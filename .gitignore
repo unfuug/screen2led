@@ -1,0 +1,18 @@
+* 
+!*/
+
+# track this file
+!.gitignore
+
+# track the README
+!README.md
+
+# track arduino code
+!arduino/arduino.ino
+
+# track modified modules
+!pylette_modified/**/*.py
+!colorthief_modified.py
+
+# track test script1.py
+!script1.py
