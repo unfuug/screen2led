@@ -14,6 +14,9 @@
 !pylette_modified/**/*.py
 !colorthief_modified.py
 
+# track connection module
+!connection.py
+
 # track test scripts
 !script1.py
 !script2.py
