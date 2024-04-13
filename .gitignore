@@ -14,5 +14,6 @@
 !pylette_modified/**/*.py
 !colorthief_modified.py
 
-# track test script1.py
+# track test scripts
 !script1.py
+!script2.py
