@@ -6,12 +6,14 @@ import time
 import math
 import serial
 from colorthief_modified import ColorThief
-from connection import Connection
+from connections.arduino import ArduinoConnection
 from PIL import ImageGrab
 
-DELAY = 0.5
-
 def extract_screen_color():
+
+    # TODO/ IDEA: Use Pylette (https://github.com/qTipTip/Pylette) and filter
+    # output palette for a good highlight color, thats not too grayish.
+
     #start_time = time.time()
     screen = ImageGrab.grab(bbox=(1920, 1080, 2560, 1440))
     palette = ColorThief(screen).get_palette(color_count=5, quality=10)
@@ -36,20 +38,26 @@ def equal_with_margin(rgb1, rgb2, margin):
 
 def main():
 
-    conn = Connection(port="COM3", baudrate=9600, verbosity=True)
+    DELAY = 0.5
+    DEBUG = True
+    CONN  = ArduinoConnection(port="COM3", baudrate=9600, verbosity=DEBUG)
 
     current_color = (0,0,0)
 
     try: 
+        CONN.open()
         while True:
             color = extract_screen_color()
-            print(color)
+            #if DEBUG: print(color)
             if not equal_with_margin(color, current_color, 10):
-                conn.send(color)
+                CONN.send(color)
                 current_color = color
             time.sleep(DELAY)
     except KeyboardInterrupt:
-        conn.close()
+        pass
+    finally:
+        print("Exiting...")
+        CONN.close()
 
     
 

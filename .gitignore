@@ -15,7 +15,9 @@
 !colorthief_modified.py
 
 # track connection module
-!connection.py
+!connections/connection.py
+!connections/arduino.py
+!connections/lib.py
 
 # track test scripts
 !script1.py
