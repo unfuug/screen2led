@@ -22,3 +22,6 @@
 # track test scripts
 !script1.py
 !script2.py
+
+# track schematics
+!schematics.pdf
